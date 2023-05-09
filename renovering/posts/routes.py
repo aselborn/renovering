@@ -39,15 +39,20 @@ def update_post(post_id):
     if form.validate_on_submit():
         post.title = form.title.data
         post.content = form.content.data 
+        post.date_start = form.date_start.data 
+        post.date_end = form.date_end.data 
         db.session.commit()
         flash('Your post has been uypdated', 'success')
         return redirect(url_for('posts.post', post_id = post.id))
+    
     elif request.method == 'GET':
         form.title.data = post.title
-        form.content.data = post.content 
+        form.content.data = post.content
+        form.date_start.data = post.date_start
+        form.date_end.data = post.date_end
 
-    return render_template('create_post.html', title='Update Post', 
-                           form=form, legend='Update post' )
+    return render_template('create_post.html', title='Updatera Renovering', 
+                           form=form, legend='Updatera renovering' )
 
 
 @posts.route('/post/<int:post_id>/delete',methods =['POST'])

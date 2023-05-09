@@ -31,9 +31,38 @@
                     {{ form.content(class="form-control form-control-lg") }}
                 {% endif %}
             </div>
+
+            <!--Datum utfört-->
+            <div class="form-btn-group">
+                
+                {{  form.date_start.label(class="form-control-label") }}
+                {% if form.date_start.errors %}
+                    {{ form.date_start(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.date_start.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.date_start(class="form-control form-control-lg") }}
+                {% endif %}
+
+                {{  form.date_end.label(class="form-control-label") }}
+                {% if form.date_end.errors %}
+                    {{ form.date_end(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.date_end.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.date_end(class="form-control form-control-lg") }}
+                {% endif %}
+
+            </div>
         </fieldset>
         <div class="form-group">
-            {{ form.submit(class="btn btn-outline-info") }}
+            {{ form.submit(class="btn btn-outline-info mt-2") }}
         </div>
        
     </form>

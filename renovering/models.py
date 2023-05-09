@@ -44,7 +44,11 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(100), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False, default = datetime.utcnow)
+    
     content = db.Column(db.Text, nullable=False)
+    date_start = db.Column(db.DateTime, nullable=False, default = datetime.today)
+    date_end = db.Column(db.DateTime, nullable=True)
+    
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) # relationen - nyckeln 
 
     def __rep__(self):
@@ -57,8 +61,8 @@ class Post(db.Model):
 class PostImages(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     info = db.Column(db.String(150), nullable=True)
-    data = db.Column(db.Binary, nullable=False)
-    post_id = db.Column(db.Integer, db.ForeignKey('Post.id'), nullable = False)
+    data = db.Column(db.BLOB, nullable=False)
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable = False)
 
     def __rep__(self):
         return f"User('{self.info}')"
